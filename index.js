@@ -29,4 +29,9 @@ bot.hashtag("bot", (ctx) => {
     return ctx.reply("bot hashtaged");
 });
 
+bot.command("ctx", (ctx) => {
+    console.log(ctx);
+    return ctx.reply("ok");
+});
+
 bot.launch().then(result => console.log("Bot has started")).catch(err => console.log(err));
