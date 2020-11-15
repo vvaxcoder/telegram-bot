@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/xcodervv/telegram-bot#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "telegraf": "^3.38.0"
   }
 }
