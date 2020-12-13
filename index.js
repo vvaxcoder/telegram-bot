@@ -18,11 +18,8 @@ bot.hears(/^[a-zA-Z]+$/i, async (ctx) => {
   }
 
   try {
-    console.log(ctx.message.text);
     const response = await axios.get("https://api.monobank.ua/bank/currency");
     const currencyArr = response.data;
-    console.log(currencyArr[0]);
-    console.log(currency);
     const foundCurrency = currencyArr.find(item => item.currencyCodeA.toString() === currency.number);
 
     if (Object.keys(foundCurrency).length === 0) {
@@ -31,8 +28,8 @@ bot.hears(/^[a-zA-Z]+$/i, async (ctx) => {
 
     return ctx.replyWithMarkdown(`
     CURRENCY: ${currency.code}
-    RATE BUY: ${foundCurrency.rateBuy}
-    RATE SELL: ${foundCurrency.rateSell}
+  RATE BUY: *${foundCurrency.rateBuy}*
+  RATE SELL: *${foundCurrency.rateSell}*
     `);
   } catch (error) {
     return ctx.reply("Error on request");
