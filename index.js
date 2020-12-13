@@ -2,14 +2,18 @@ const Telegraf = require("telegraf");
 const { token } = require("./config");
 const bot = new Telegraf(token);
 
-//use middlewarw BEFORE your code
+//use middleware BEFORE your code
 bot.use(async (ctx, next) => {
   ctx.reply("Middleware");
+  ctx.state.isSend = true;
   await next(ctx);
 });
 
 //run the bot
-bot.start(ctx => ctx.reply("Start command"));
+bot.start(ctx => {
+    const { state } = ctx;
+    return ctx.reply(`Start command ${state.isSend}`);
+});
 bot.help(ctx => ctx.reply("Help command"));
 bot.settings(ctx => ctx.reply("Settings command"));
 
