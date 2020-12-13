@@ -44,6 +44,10 @@ bot.command("ctx", ctx => {
   return ctx.reply("ok");
 });
 
+bot.hears('dog', (ctx) => {
+    ctx.reply('whatever');
+});
+
 bot
   .launch()
   .then(result => console.log("Bot has started"))
