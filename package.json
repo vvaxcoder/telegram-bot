@@ -4,6 +4,8 @@
   "description": "Experiments with Telegraf.js",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
+    "start-dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +20,8 @@
   },
   "homepage": "https://github.com/xcodervv/telegram-bot#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.6",
     "telegraf": "^3.38.0"
   }
 }
