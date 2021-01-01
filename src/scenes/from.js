@@ -8,10 +8,11 @@ from.enter((ctx) =>  {
 });
 
 from.on('text', (ctx) => {
-    if (ctx.message.text.length > 2 || ctx.message.text.length === 0) {
+    if (ctx.message.text.length > 2 || ctx.message.text.length === 1) {
         return ctx.reply('Language must be at least 2 chars');
     }
 
+    ctx.session.from = ctx.message.text.toLowerCase();
     ctx.reply('Thanks for setting language');
     return ctx.scene.leave();
 });

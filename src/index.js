@@ -1,4 +1,5 @@
 const Telegraf = require("telegraf");
+const TSL = require("telegraf-session-local");
 const { token } = require("../config");
 const Stage = require('telegraf/stage');
 const Scene = require('telegraf/scenes/base');
@@ -11,13 +12,14 @@ const toScenes = require('./scenes/to');
 
 const init = async(bot, config) => {
     const stage = new Stage([fromScenes, toScenes]);
-    bot.use(session());
+    bot.use(new TSL({ 'database': 'data/session.json' }).middleware());
     bot.use(stage.middleware());
     //commands
     bot.start(startCommand());
     bot.help(helpCommand());
     bot.command('from', (ctx) => ctx.scene.enter('from'));
     bot.command('to', (ctx) => ctx.scene.enter('to'));
+    bot.command('lang', (ctx) => ctx.reply(`${ctx.session.from} - ${ctx.session.to}`));
     return bot;
 };
 
